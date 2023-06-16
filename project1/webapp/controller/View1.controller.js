@@ -21,11 +21,6 @@ sap.ui.define([
             onInit: function () {
                 this.getRouter().getRoute("Step_2").attachPatternMatched(this._onObjectMatched, this);
                 this.tempArray = []
-
-               
-                   
-                
-
             },
             _onObjectMatched: function (oEvent) {
                 this.readData()
@@ -41,73 +36,301 @@ sap.ui.define([
                 let ModelloSalva = this.getView().getModel("lagpModel").oData
                 let sedetolinchar = []
                 let sedetolinnum = []
+                let chartochar = []
+                let chartonum = []
                 ModelloSalva.map((item) => {
                     let characteristic_names = Object.keys(item).filter(p => !props_to_remove.some(ptr => ptr === p))
                     characteristic_names = characteristic_names.filter(p => p.indexOf("ValueChar")<0)
                     for (const c_name of characteristic_names) {
-                        let OEntry = {
-                            StartPoint: item.StartPoint,
-                            EndPoint: item.EndPoint,
-                            LinearLength: item.LinearLength,
-                            LinearUnit: item.LinearUnit,
-                            ExternalNumber: item.ExternalNumber,
-                            Charact: c_name,
-                            CharactDescr: item[c_name],
-                            ValueChar: item[c_name+"ValueChar"],
-                            ValueCharLong: item[c_name+"ValueChar"],
-                            ValueNeutral: item[c_name+"ValueChar"],
-                            ValueNeutralLong: item[c_name+"ValueChar"],
-                            atfor: item[c_name+"atfor"],
-                        }
-                        let sedetolinnum_oentry = {
-                            ExternalNumber : item.ExternalNumber,
-                            Charact : item.CharactDescr,
-                            ValueFrom :  item[c_name+"ValueChar"],  //Da cambiare
-                            ValueTo : item.ValueTo,
-                            ValueRelation : item.ValueRelation,
-                            UnitFrom : item.UnitFrom,
-                            UnitTo : item.UnitTo,
-                            UnitFromIso : item.UnitFromIso,
-                            UnitToIso : item.UnitToIso,
-                            CharactDescr : item.CharactDescr,
-                            Counter : item.Counter,
-                            StartPoint: item.StartPoint,       
-                            EndPoint: item.EndPoint,            
-                            LinearLength : item.LinearLength,            
-                            LinearUnit : item.LinearUnit,
-                            LinearUnitIso :item.LinearUnitIso,
-                            ValueChar : item.ValueChar,
-                            atfor: item[c_name+"atfor"]
-                        }
-                        
-                            if (item[c_name+"atfor"] == "CHAR") {
-                                sedetolinchar.push(OEntry)
-                            } else if (item[c_name+"atfor"] == "NUM" || item[c_name+"atfor"] == "DATE") {
-                                sedetolinnum.push(sedetolinnum_oentry)
-                            } 
-                      
+                                let OEntry = {
+                                    StartPoint: item.StartPoint,
+                                    EndPoint: item.EndPoint,
+                                    LinearLength: item.LinearLength,
+                                    LinearUnit: item.LinearUnit,
+                                    ExternalNumber: item.ExternalNumber,
+                                    Charact: c_name,
+                                    CharactDescr: item[c_name],
+                                    ValueChar: item[c_name+"ValueChar"],
+                                    ValueCharLong: item[c_name+"ValueChar"],
+                                    ValueNeutral: item[c_name+"ValueChar"],
+                                    ValueNeutralLong: item[c_name+"ValueChar"],
+                                    atfor: item[c_name+"atfor"],
+                                }
+                                let sedetolinnum_oentry = {
+                                    ExternalNumber : item.ExternalNumber,
+                                    Charact :  c_name,
+                                    ValueFrom :  item[c_name+"ValueChar"],  //Da cambiare
+                                    ValueTo : item.ValueTo,
+                                    ValueRelation : item.ValueRelation,
+                                    UnitFrom : item.UnitFrom,
+                                    UnitTo : item.UnitTo,
+                                    UnitFromIso : item.UnitFromIso,
+                                    UnitToIso : item.UnitToIso,
+                                    CharactDescr : item[c_name],
+                                    Counter : item.Counter,
+                                    StartPoint: item.StartPoint,       
+                                    EndPoint: item.EndPoint,            
+                                    LinearLength : item.LinearLength,            
+                                    LinearUnit : item.LinearUnit,
+                                    LinearUnitIso :item.LinearUnitIso,
+                                    ValueChar : item.ValueChar,
+                                    ValueRelation : "1",
+                                    atfor: item[c_name+"atfor"]
+                                }
+                                let chartochar_oentry = {
+                                    ExternalNumber : item.ExternalNumber,
+                                    ClassType : item.ClassType,
+                                    ClassNumber : item.ClassNumber,
+                                    Charact : c_name,
+                                    ValueChar : item[c_name+"ValueChar"],
+                                    ValueNeutral : item[c_name+"ValueChar"],
+                                    CharactDescr : item[c_name],
+                                    ValueCharLong : item[c_name+"ValueChar"],
+                                    ValueNeutralLong : item[c_name+"ValueChar"],
+                                    atfor : item[c_name+"atfor"],
+                                }
+                                let chartonum_oentry = {
+                                    ExternalNumber : item.ExternalNumber,
+                                    ClassType : item.ClassType,
+                                    ClassNumber : item.ClassNumber,
+                                    Charact : c_name,
+                                    ValueFrom : item[c_name+"ValueChar"],
+                                    CharactDescr : item[c_name],
+                                    atfor :  item[c_name+"atfor"],
+                                    ValueRelation : "1",
+                                    ValueChar : item[c_name+"ValueChar"],
+                                    }
+                                if (item[c_name+"atfor"] == "CHAR") {
+                                    sedetolinchar.push(OEntry)
+                                    chartochar.push(chartochar_oentry)
+                                } else if (item[c_name+"atfor"] == "NUM" || item[c_name+"atfor"] == "DATE") {
+                                    sedetolinnum.push(sedetolinnum_oentry)
+                                    chartonum.push(chartonum_oentry)
+                                }   
+                                let DataGeneral = {
+                                    "__metadata" : {
 
-                        
+                                        "type" : "ZCREA_ST_SRV.DataGeneral"
+              
+                                      },
+              
+                                      "Authgrp" : "",
+              
+                                      "Objecttype" : "", // Eqart - Tipo oggetto
+              
+                                      "Inventory" : "",
+              
+                                      "ObjSize" : "",
+              
+                                      "ObjWeight" : " ",
+              
+                                      "UnitOfWt" : "",
+              
+                                      "UnitIso" : "",
+              
+                                      "Acqdate" : "",
+              
+                                      "Acquisval" : "",
+              
+                                      "Currency" : "",
+              
+                                      "CurrIso" : "",
+              
+                                      "Manfacture" : "",
+              
+                                      "Mancountry" : "",
+              
+                                      "CountrIso" : "",
+              
+                                      "Manserno" : "",
+              
+                                      "Manmodel" : "",
+              
+                                      "Constyear" : "",
+              
+                                      "Constmonth" : "",
+              
+                                      "StartFrom" : "",
+              
+                                      "Planplant" : "",
+              
+                                      "Consttype" : "",
+              
+                                      "Manparno" : "",
+              
+                                      "Plangroup" : "",
+              
+                                      "Catprofile" : "",
+              
+                                      "WorkCtr" : "",
+              
+                                      "Descript" : "", // Descrizione opera / strada
+              
+                                      "Abcindic" : "",
+              
+                                      "Sortfield" : "",
+              
+                                      "Maintplant" : "",
+              
+                                      "Maintloc" : "",
+              
+                                      "Maintroom" : "",
+              
+                                      "Plsectn" : "",
+              
+                                      "PpWkctr" : "",
+              
+                                      "BusArea" : "",
+              
+                                      "Costcenter" : "",
+              
+                                      "WbsElem" : "",
+              
+                                      "CompCode" : "",
+              
+                                      "AssetNo" : "",
+              
+                                      "SubNumber" : "",
+              
+                                      "Standorder" : "",
+              
+                                      "Settlorder" : "",
+              
+                                      "SalesOrg" : "",
+              
+                                      "DistrChan" : "",
+              
+                                      "Division" : "",
+              
+                                      "SalesOff" : "",
+              
+                                      "SalesGrp" : "",
+              
+                                      "ReadCrdat" : "",
+              
+                                      "ReadCrnam" : "",
+              
+                                      "ReadChdat" : "",
+              
+                                      "ReadChnam" : "",
+              
+                                      "ReadAdrnr" : "",
+              
+                                      "ConsttypeExternal" : "",
+              
+                                      "ConsttypeGuid" : "",
+              
+                                      "ConsttypeVersion" : "",
+              
+                                      "ReadObjnr" : "",
+              
+                                      "ShiftReportType" : "",
+              
+                                      "ShiftNoteNotificationType" : "",
+              
+                                      "StartPoint" : "", // Punto iniziale
+              
+                                      "EndPoint" : "", // Punto finale
+              
+                                      "LinearLength" : "",
+              
+                                      "LinearUnit" : "", // Unità di misura
+              
+                                      "FirstOffsetTypeCode" : "",
+              
+                                      "FirstOffsetValue" : "",
+              
+                                      "FirstOffsetUnit" : "",
+              
+                                      "SecondOffsetTypeCode" : "",
+              
+                                      "SecondOffsetValue" : "",
+              
+                                      "SecondOffsetUnit" : "",
+              
+                                      "SecondOffsetUnitIso" : "",
+              
+                                      "LinearUnitIso" : "",
+              
+                                      "FirstOffsetUnitIso" : "",
+              
+                                      "LinearReferencePattern" : "", // Modello Riferimento Lineare
+              
+                                      "MarkerStartPoint" : "",
+              
+                                      "MarkerDistanceStartPoint" : "",
+              
+                                      "MarkerEndPoint" : "",
+              
+                                      "MarkerDistanceEndPoint" : "",
+              
+                                      "MarkerDistanceUnit" : "",
+              
+                                      "MarkerDistanceUnitIso" : "",
+              
+                                      "ConsttypeLong" : "",
+              
+                                      "Zzlatitude_start" : "", // Latitudine iniziale
+              
+                                      "Zzlatitude_end" : "", // Latitudine finale
+              
+                                      "Zzlongitude_start" : "", // Longitudine iniziale
+              
+                                      "Zzlongitude_end" : "", // Longitudine finale
+              
+                                      "Zziflot" : "",
+              
+                                      "Zziflotdescr" : "",
+              
+                                      "Zzstradeint" : "",
+              
+                                      "Zzstradeext" : "",
+              
+                                      "Zzsoaweext" : "",
+              
+                                      "Zzns" : "",
+              
+                                      "Zznsint" : "",
+              
+                                      "Zzsoaweold" : "",
+              
+                                      "Zznprotocods" : "",
+              
+                                      "Zzdataods" : "",
+              
+                                      "Zzkm" : "",
+              
+                                      "Zzkmda" : "",
+              
+                                      "Zzkma" : "",
+              
+                                      "Zzestesa" : "",
+              
+                                      "testo" : "", // Note
+              
+                                      "tipostrada" : "", // Tipo strada
+              
+                                      "codicesubstrada" : "", // Codice sub strada
+              
+                                      "numerostrada" : "", // Numero strada
+              
+                                      "suffisso" : "", // Suffisso strada
+              
+                                      "livello": "", // Livello opera
+              
+                                      "operazione": "",
+              
+                                      "Zprefcodop": "", // Prefisso codice opera
+              
+                                      "Zprefcodpop": "",
+              
+                                      "Zprefcodele": "",
+              
+                                      "statoutente": "", // Stato utente
+              
+                                      "statosistema": "" // Stato sistema
+                                    } 
                     }
-                      
-                        
-                       
-                       
-                    
-                    // let sedetochar = []
-                    // let chartochar = []
-                    // let chartonum = []
-                   
-                    
-                   
-                   
-
-
-
-
-
-
-
                 })
                 let that = this;
                 let oModel = this.getView().getModel()
@@ -118,18 +341,16 @@ sap.ui.define([
                     method: "GET",
                     success: function (oData) {
                         var msg = 'Operazione Riuscita!';
-                        MessageToast.show(msg);
                         // create JSON model
                         var oODataJSONModel = new sap.ui.model.json.JSONModel(oData);
                         that.getView().setModel(oODataJSONModel, "ModelloSalvaOData");
-                         
-
-                         
                     }})
                     
                    let ModelloCreate = that.getView().getModel("ModelloSalvaOData").oData;
                     ModelloCreate.sedetolin.results[0].sedetolinchar = sedetolinchar
-
+                    ModelloCreate.sedetolin.results[0].sedetolinnum = sedetolinnum
+                    ModelloCreate.sedetochar.results[0].chartonum = chartonum
+                    ModelloCreate.sedetochar.results[0].chartochar = chartochar
                     oModel.create("/sedeSet",{
                         DataGeneral: ModelloCreate.DataGeneral,
                         DataGeneralX: ModelloCreate.DataGeneralX,
@@ -142,9 +363,8 @@ sap.ui.define([
                         sedetolin: ModelloCreate.sedetolin, 
                     }, 
                     {
-    
                         success: function (oData, oRes) {
-                            var msg2 = 'Modificato!';
+                            var msg2 = oRes.data.Return.Message;
                             MessageToast.show(msg2);
                         },
                         error: function (oErr) { console.log("error") }
@@ -185,7 +405,7 @@ sap.ui.define([
                     },
                     method: "GET",
                     success: function (oData) {
-                        var msg = 'Operazione Riuscita!';
+                        var msg = 'Operazione in corso';
                         MessageToast.show(msg);
                         //Create Json Model for table
                         var oODataJSONModel = new sap.ui.model.json.JSONModel();

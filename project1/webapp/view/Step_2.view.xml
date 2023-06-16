@@ -108,7 +108,7 @@
                                 id="pFin"
                                 type="Text"
 						    	value="{ModelloInput>/DataGeneral/EndPoint}"
-                                editable="false"
+                                editable="true"
                                 placeholder=""
                                 width="15rem"
                                 class="sapUiSmallMarginBottom"
