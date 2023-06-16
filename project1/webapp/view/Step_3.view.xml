@@ -1,0 +1,127 @@
+<mvc:View
+    controllerName="project1.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    displayBlock="true"
+    xmlns:table="sap.ui.table"
+    xmlns:sfb="sap.ui.comp.smartfilterbar"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <content>
+
+
+                <Table
+                    id="TabellaPrincipale"
+                    growingThreshold="10"
+                    paste="onPaste"
+                    items="{
+                                path: 'Modello1>/',
+                                sorter: {
+                                    path: 'ClassNumber',
+                                    descending: false,
+                                    group: true
+                                }
+                            }"
+                >
+                    <headerToolbar>
+                        <OverflowToolbar id="otbSubheader">
+                            <Title
+                                text="Products"
+                                level="H2"
+                            />
+                            <ToolbarSpacer />
+                            <Button
+                                id="editButton"
+                                text="Edit"
+                                type="Transparent"
+                                press="onEdit"
+                            />
+                            <Button
+                                id="Salva"
+                                text="Salva"
+                                type="Transparent"
+                                press="onSave"
+                            />
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns >
+                        <Column
+                            width="12em"
+                            mergeDuplicates="true"
+                            mergeFunctionName="getTitle"
+                        >
+                            <Text text="Start Point" />
+                        </Column>
+                        <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true"
+                            hAlign="End"
+                        >
+                            <Text text="End Point" />
+                        </Column>
+                        <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true"
+                            hAlign="Center"
+                        >
+                            <Text text="Estesa" />
+                        </Column>
+                        <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true"
+                            hAlign="Center"
+                        >
+                            <Text text="Value From" />
+                        </Column>
+                        <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true"
+                            hAlign="Center"
+                            
+                        >
+                            <Text text="Value To" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem vAlign="Middle">
+                            <cells>
+                                <Input value="{Modello1>ClassNumber}"></Input>
+                                <Input value="{Modello1>CharactDescr}"></Input>
+                                <Input value="{Modello1>ValueChar}"></Input>
+                                <Input value="{Modello1>ValueFrom}"></Input>
+                                <Input value="{Modello1>ValueTo}"></Input>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+           
+        </content>
+        <footer>
+            <OverflowToolbar
+                id="otbFooter2"
+                height="40px"
+            >
+                <ToolbarSpacer />
+                <Button
+                    press=".home_step_4"
+                    class="sapUiResponsiveMargin"
+                    type="Emphasized"
+                    id="BottoneContinua2"
+                    text="Continua"
+                >
+                    <layoutData>
+                        <OverflowToolbarLayoutData priority="NeverOverflow" />
+                    </layoutData>
+                </Button>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

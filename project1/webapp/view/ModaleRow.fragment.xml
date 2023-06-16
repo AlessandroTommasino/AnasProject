@@ -1,0 +1,67 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:sf="sap.ui.comp.smartform"
+    xmlns:smartField="sap.ui.comp.smartfield"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:smartmultiedit="sap.ui.comp.smartmultiedit"
+>
+    <Dialog
+        stretchOnPhone="true"
+        id="multipleEditingDialog"
+        contentWidth="40rem"
+        horizontalScrolling="false"
+    >
+        <content>
+            <form:SimpleForm
+                title="Aggiungi i dati richiesti"
+                editable="true"
+            >
+                <Label text="Punto Iniziale" />
+                <MaskInput
+                    mask="~~~~~~~~~~"
+                    placeholderSymbol="_"
+                    placeholder="All characters allowed"
+                >
+                    <rules>
+                        <MaskInputRule
+                            maskFormatSymbol="~"
+                            regex="[^_]"
+                        />
+                    </rules>
+                </MaskInput>
+
+                <Label text="Punto Finale" />
+                <MaskInput
+                    mask="**********"
+                    placeholderSymbol="_"
+                    placeholder="Latin characters (case insensitive) and numbers"
+                >
+                    <rules>
+                        <MaskInputRule />
+                    </rules>
+                </MaskInput>
+
+                <Label text="Estesa" />
+                <MaskInput
+                    mask="Estesa"
+                    placeholderSymbol="_"
+                    placeholder="Inserire Estesa"
+                    showClearIcon="true"
+                />
+            </form:SimpleForm>
+        </content>
+        <buttons>
+            <Button
+                text="Save"
+                press="onDialogSaveButton"
+                type="Emphasized"
+            />
+            <Button
+                text="Cancel"
+                press="onCloseDialog"
+            />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

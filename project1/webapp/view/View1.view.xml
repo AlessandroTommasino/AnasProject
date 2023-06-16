@@ -1,0 +1,298 @@
+<mvc:View
+    controllerName="project1.controller.View1"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:smartField="sap.ui.comp.smartfield"
+    xmlns:form="sap.ui.comp.smartform"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <content>
+           <l:VerticalLayout
+                    width="100%"
+                    class="gridWrapper"
+                >
+                
+
+                    <!-- SETTORE UNO -->
+
+                    <Title
+                        class="sapUiLargeMarginBegin"
+                        text="Dati lineari change"
+                    />
+
+                    <l:Grid
+                        containerQuery="true"
+                        position="Center"
+                        width="94%"
+                        defaultSpan="XL6 L6 M6"
+                        class="sapUiLargeMarginTop"
+                    >
+                        <FlexBox
+                            height="30px"
+                            width="90%"
+                            alignItems="Center"
+                            justifyContent="SpaceBetween"
+                        >
+                            <Label
+                                text="Modello di riferimento lineare:"
+                                labelFor="modRifLin"
+                            />
+                            <Input
+                                id="modRifLin"
+                                type="Text"
+							    value="{lagpModel>/DataGeneral/LinearReferencePattern}"
+                                placeholder="display"
+                                showValueHelp="true"
+                                valueHelpOnly="true"
+                                valueHelpRequest=".handlemodRifLin2"
+                                width="15rem"
+                                class="sapUiSmallMarginBottom"
+                                suggestionItems="{Ztendopera}"
+                            >
+                                <suggestionItems>
+                                    <core:Item text="{Ztendopera}" />
+                                </suggestionItems>
+                            </Input>
+                        </FlexBox>
+                        <FlexBox
+                            height="30px"
+                            alignItems="Center"
+                            justifyContent="SpaceBetween"
+                        >
+                            <Label text="" />
+                        </FlexBox>
+
+                        <FlexBox
+                            height="30px"
+                            width="90%"
+                            alignItems="Center"
+                            justifyContent="SpaceBetween"
+                        >
+                            <Label
+                                text="Punto iniziale:"
+                                labelFor="pIniz"
+                            />
+                            <Input
+                                id="pIniz"
+                                type="Text"
+							    value="{lagpModel>/DataGeneral/StartPoint}"
+                                editable="false"
+                                placeholder=""
+                                width="15rem"
+                                class="sapUiSmallMarginBottom"
+                            />
+                        </FlexBox>
+                        <FlexBox
+                            height="30px"
+                            width="90%"
+                            alignItems="Center"
+                            justifyContent="SpaceBetween"
+                        >
+                            <Label
+                                text="Punto finale:"
+                                labelFor="pFin"
+                            />
+                            <Input
+                                id="pFin"
+                                type="Text"
+						    	value="{lagpModel>/DataGeneral/EndPoint}"
+                                editable="false"
+                                placeholder=""
+                                width="15rem"
+                                class="sapUiSmallMarginBottom"
+                            />
+                        </FlexBox>
+
+                        <FlexBox
+                            height="30px"
+                            width="90%"
+                            alignItems="Center"
+                            justifyContent="SpaceBetween"
+                        >
+                            <Label
+                                text="Lunghezza:"
+                                labelFor="lung"
+                            />
+                            <Input
+                                id="lung"
+                                type="Text"
+				    			value="{lagpModel>/DataGeneral/LinearLength}"
+                                editable="false"
+                                placeholder=""
+                                width="15rem"
+                                class="sapUiSmallMarginBottom"
+                            />
+                        </FlexBox>
+                        <FlexBox
+                            height="30px"
+                            width="90%"
+                            alignItems="Center"
+                            justifyContent="SpaceBetween"
+                        >
+                            <Label
+                                text="Unità di misura:"
+                                labelFor="um"
+                            />
+                            <Input
+                                id="um"
+                                type="Text"
+					    		value="{lagpModel>/DataGeneral/LinearUnit}"
+                                editable="false"
+                                placeholder=""
+                                width="15rem"
+                                class="sapUiSmallMarginBottom"
+                            />
+                        </FlexBox>
+
+                        <FlexBox
+                            height="30px"
+                            width="90%"
+                            alignItems="Center"
+                            justifyContent="SpaceBetween"
+                        >
+                            <Label
+                                text="Marcatore iniziale:"
+                                labelFor="marIniziale"
+                            />
+                            <Input
+                                id="marIniziale"
+                                type="Text"
+		    					value="{lagpModel>/DataGeneral/MarkerStartPoint}"
+                                editable="false"
+                                placeholder=""
+                                width="15rem"
+                                class="sapUiSmallMarginBottom"
+                            />
+                        </FlexBox>
+                        <FlexBox
+                            height="30px"
+                            width="90%"
+                            alignItems="Center"
+                            justifyContent="SpaceBetween"
+                        >
+                            <Label
+                                text="Marcatore finale:"
+                                labelFor="marFinale"
+                            />
+                            <Input
+                                id="marFinale"
+                                type="Text"
+				    			value="{lagpModel>/DataGeneral/MarkerEndPoint}"
+                                editable="false"
+                                placeholder=""
+                                width="15rem"
+                                class="sapUiSmallMarginBottom"
+                            />
+                        </FlexBox>
+
+                        <FlexBox
+                            height="30px"
+                            width="90%"
+                            alignItems="Center"
+                            justifyContent="SpaceBetween"
+                        >
+                            <Label
+                                text="Latitudine iniziale:"
+                                labelFor="latIniziale"
+                            />
+                            <Input
+                                id="latIniziale"
+                                type="Text"
+	        					value="{lagpModel>/DataGeneral/Zzlatitude_start}"
+                                editable="false"
+                                placeholder=""
+                                width="15rem"
+                                class="sapUiSmallMarginBottom"
+                            />
+                        </FlexBox>
+                        <FlexBox
+                            height="30px"
+                            width="90%"
+                            alignItems="Center"
+                            justifyContent="SpaceBetween"
+                        >
+                            <Label
+                                text="Latitudine finale:"
+                                labelFor="latFinale"
+                            />
+                            <Input
+                                id="latFinale"
+                                type="Text"
+						    	value="{lagpModel>/DataGeneral/Zzlatitude_end}"
+                                editable="false"
+                                placeholder=""
+                                width="15rem"
+                                class="sapUiSmallMarginBottom"
+                            />
+                        </FlexBox>
+
+                        <FlexBox
+                            height="30px"
+                            width="90%"
+                            alignItems="Center"
+                            justifyContent="SpaceBetween"
+                        >
+                            <Label
+                                text="Longitudine iniziale:"
+                                labelFor="lonIniziale"
+                            />
+                            <Input
+                                id="lonIniziale"
+                                type="Text"
+						    	value="{lagpModel>/DataGeneral/Zzlongitude_start}"
+                                editable="false"
+                                placeholder=""
+                                width="15rem"
+                                class="sapUiSmallMarginBottom"
+                            />
+                        </FlexBox>
+                        <FlexBox
+                            height="30px"
+                            width="90%"
+                            alignItems="Center"
+                            justifyContent="SpaceBetween"
+                        >
+                            <Label
+                                text="Longitudine finale:"
+                                labelFor="lonFinale"
+                            />
+                            <Input
+                                id="lonFinale"
+                                type="Text"
+						    	value="{lagpModel>/DataGeneral/Zzlongitude_end}"
+                                editable="false"
+                                placeholder=""
+                                width="15rem"
+                                class="sapUiSmallMarginBottom"
+                            />
+                        </FlexBox>
+                    </l:Grid>
+                </l:VerticalLayout>
+        </content>
+
+        <footer>
+            <OverflowToolbar
+                id="otbFooter3"
+                height="40px"
+            >
+                <ToolbarSpacer />
+                <Button
+                    press=".Step_2_Button"
+                    class="sapUiResponsiveMargin"
+                    type="Emphasized"
+                    id="BottoneContinua4"
+                    text="Continua"
+                >
+                    <layoutData>
+                        <OverflowToolbarLayoutData priority="NeverOverflow" />
+                    </layoutData>
+                </Button>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>
